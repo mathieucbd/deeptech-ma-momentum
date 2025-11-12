@@ -1,0 +1,16 @@
+# Virtual Environment
+.venv/
+env/
+*.pyc
+__pycache__/
+
+# Data
+data/raw/
+data/processed/
+data/outputs/
+
+# VS Code
+.vscode/
+
+# Notebooks
+.ipynb_checkpoints/
