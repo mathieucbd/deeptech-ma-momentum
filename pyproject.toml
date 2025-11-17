@@ -1,18 +1,24 @@
 [project]
 name = "deeptech-ma-momentum"
 version = "0.1.0"
-requires-python = ">=3.10"
+description = "Building investment signals from global deeptech M&A data."
+authors = [
+    {name = "Mathieu Chabirand", email = "mathieu.chabirand@gmail.com"},
+]
 dependencies = [
     "polars",
-    "scikit-learn",
-    "hdbscan",
-    "umap-learn",
+    "scikit-learn>=1.4",
+    "plotly>=5.20",
+    "hdbscan>=0.8",
+    "umap-learn>=0.5",
+    "google-genai>=0.15",
 ]
+requires-python = ">=3.10"
 
 [dependency-groups]
 dev = [
-    "jupyterlab",
+    "jupyter",
     "ipykernel",
-    "seaborn",
-    "matplotlib",
+    "notebook",
+    "black",
 ]
