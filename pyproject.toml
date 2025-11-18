@@ -12,6 +12,8 @@ dependencies = [
     "hdbscan>=0.8",
     "umap-learn>=0.5",
     "google-genai>=0.15",
+    "python-dotenv>=1.2.1",
+    "openai>=2.8.1",
 ]
 requires-python = ">=3.10"
 
