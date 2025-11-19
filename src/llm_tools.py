@@ -176,7 +176,7 @@ def zero_shot_classify_cluster_sample(sample_texts: list[str]) -> str:
     3.  **DIFFERENTIATION (CRITICAL):** You MUST assume this cluster is semantically distinct from any other cluster. Do NOT repeat general labels.
     4.  **MANDATORY SPECIFICITY:** If the cluster's theme is related to **Biotech**, **Sustainable Energy**, or **Advanced Materials**, you are **ABSOLUTELY FORBIDDEN** from using the macro-labels for these sectors. You **MUST** select a specific sub-sector label from the suggested list below.
     5.  **SYNTHESIS RULE:** You are authorized to synthesize a new, precise technical label if it better fits a unique Deeptech theme than the suggested list.
-    6.  **FAILURE LABEL:** If the deal is non-Deeptech (e.g., self-storage, general retail, traditional finance/payment processing, cannabis, or general services), you **MUST** label it 'NON_CORE_NON_DEEPTECH'.
+    6.  **FAILURE LABEL:** If the deal is non-Deeptech (e.g., self-storage, general retail, traditional finance/payment processing, cannabis, or general services), you **MUST** label it 'NON_DEEPTECH'.
     7.  **OUTPUT FORMAT:** Return ONLY the specific sector name, and nothing else. The returned name must be plain text and must NOT contain any special characters or emojis.
 
     ### PRIMARY CORE DEEPTECH SECTOR LIST (All others):
