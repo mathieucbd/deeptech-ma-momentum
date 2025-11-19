@@ -168,30 +168,57 @@ def zero_shot_classify_cluster_sample(sample_texts: list[str]) -> str:
     """
     
     prompt = f"""
-    You are a highly specialized Deeptech M&A analyst working on a quantitative research project. Your task is to review the provided transaction descriptions and identify the single most appropriate Deeptech sector or technology represented by the cluster of deals.
+    You are a highly specialized Deeptech M&A analyst working on a quantitative research project. Your task is to review the provided transaction samples from a **statistically distinct cluster** (meaning it represents a unique transaction theme).
 
     ### INSTRUCTIONS:
-    1.  **ROLE:** Act as an expert who must categorize transactions based on underlying technology and strategic application.
-    2.  **SECTORS:** Only use a name from the official list provided below. Do NOT use any other categories.
-    3.  **NON-DEEPTECH:** If the deal is related to general software, retail, or traditional services (outside of this specific technical list), you must label it 'NON-DEEPTECH'.
-    4.  **OUTPUT FORMAT:** Return ONLY the sector name EXACTLY as listed in the numbered list below, and nothing else.
+    1.  **GOAL:** Identify the single most specific **foundational, high-R&D technical theme** represented by the samples.
+    2.  **CORE DEFINITION (Mandatory Filter):** You MUST only classify deals as Deeptech if they involve **novel physical technologies, foundational science, or disruptive engineering** (e.g., new materials, advanced robotics, quantum mechanics, synthetic biology). Deals related to financing, real estate, or non-technical business model consolidation are NOT Deeptech.
+    3.  **DIFFERENTIATION (CRITICAL):** You MUST assume this cluster is semantically distinct from any other cluster. Do NOT repeat general labels.
+    4.  **MANDATORY SPECIFICITY:** If the cluster's theme is related to **Biotech**, **Sustainable Energy**, or **Advanced Materials**, you are **ABSOLUTELY FORBIDDEN** from using the macro-labels for these sectors. You **MUST** select a specific sub-sector label from the suggested list below.
+    5.  **SYNTHESIS RULE:** You are authorized to synthesize a new, precise technical label if it better fits a unique Deeptech theme than the suggested list.
+    6.  **FAILURE LABEL:** If the deal is non-Deeptech (e.g., self-storage, general retail, traditional finance/payment processing, cannabis, or general services), you **MUST** label it 'NON_CORE_NON_DEEPTECH'.
+    7.  **OUTPUT FORMAT:** Return ONLY the specific sector name, and nothing else. The returned name must be plain text and must NOT contain any special characters or emojis.
 
-    ### OFFICIAL DEEPTECH SECTOR LIST:
-    1. Quantum & Advanced Compute 
-    2. AI & Big Data
-    3. Robotics & Automation
-    4. Semiconductors
-    5. Advanced Materials
-    6. Aerospace & Autonomous Tech
-    7. Biotech & Life Sciences
-    8. Digital Networks & Infra
-    9. Cybersecurity
-    10. Clean Energy & Tech
-    11. Web3 & Digital Experience
+    ### PRIMARY CORE DEEPTECH SECTOR LIST (All others):
+    1. Advanced Computing / Quantum Computing
+    2. Advanced Manufacturing
+    3. Aerospace Defense Systems Integration
+    4. Artificial Intelligence and Machine Learning, including Big Data
+    5. Communications and Networks, including 5G
+    6. Cybersecurity and Data Protection
+    7. Electronics and Photonics
+    8. Internet of Things, W3C, Semantic Web
+    9. Robotics
+    10. Semiconductors (microchips)
+    11. Virtual Reality, Augmented Reality, Metaverse
+    12. Web 3.0, including Blockchain, Distributed Ledgers, NFTs
+
+    ### SUGGESTED SUB-SECTORS (MANDATORY VOCABULARY FOR ENERGY, BIOTECH, & MATERIALS):
+    #### Sustainable Energy & Cleantech (FORBIDDEN MACRO-LABEL)
+    - Green Hydrogen Infrastructure
+    - Advanced Battery Chemistry / Storage
+    - Solar Grid Optimization / Smart Grid
+    - Offshore Wind Farm Development
+    - Carbon Capture & Storage (CCS) / Geoengineering
+    - Sustainable Water and Recycling Infrastructure
+    - Energy Transition Metals
+
+    #### Biotech & Healthcare (FORBIDDEN MACRO-LABEL)
+    - Gene Therapy / CRISPR
+    - Drug Discovery AI
+    - Advanced Diagnostics / Imaging
+    - Genomics Data Analysis
+    - Therapeutic Development (General)
+
+    #### Advanced Materials (FORBIDDEN MACRO-LABEL)
+    - Nanomaterials / Graphene
+    - High-Performance Composites & Ceramics
+    - Smart Polymers
+    - Functional Surfaces & Coatings
 
     Transaction Sample Descriptions:
     ---
-    {'\n---\n'.join(sample_texts)}
+    {'\n'.join(sample_texts)}
     ---
     """
     
