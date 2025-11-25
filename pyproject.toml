@@ -15,6 +15,7 @@ dependencies = [
     "python-dotenv>=1.2.1",
     "openai>=2.8.1",
     "yfinance>=0.2.66",
+    "statsmodels>=0.14.5",
 ]
 requires-python = ">=3.10"
 
